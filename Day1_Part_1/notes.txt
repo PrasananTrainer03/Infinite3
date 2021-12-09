@@ -228,7 +228,100 @@ There are 2 types of control structures known as
 		   statement(s);
 		}
 
+	switch...case : Used to define the menu-driven programs. 
+
+	switch(expr) {
+	  case exp1 :
+		statement(s);
+		break;
+	  case expr 2: 
+		statement(s);
+		break;
+	....
+	....
+	....
+
+	default : 
+	   statement(s);
+	   break;
+	}
+
 	(ii) Looping 
+
+		while loop : This loop executes all the statements repeatedly until the condition remains true,
+if the condition remains false, then it comes out of the loop. 
+
+	For every loop, basically there are 3 phases as 
+
+		(i) Initialization
+
+		(ii) Condition
+
+		(iii) Increment/Decrement 
+
+	Initialization performed at the beginning of the loop.
+
+	Condition performed at the conditional part of the loop.
+
+	Increment/Decrement performed before closing the loop. 
+
+	while(condition) {
+	  statement(s);
+	  ....
+          ....
+        }
+
+
+	for loop : 
+
+	This loop executes all the statements repeatedly until the condition remains true,
+if the condition remains false, then it comes out of the loop. 
+
+	for(initialization;condition;increment/decrement) {
+		statement(s);
+	}
+
+
+
+Array : 
+
+An array is the finite ordered set of homogeneous elements, means all the elements
+belongs to same data type. 
+
+All the elements of array are stored in successive memory locations. 
+
+int[] a=new int[]{4,2,66,32,3};
+
+a[0]=4;
+a[1]=2;
+a[2]=66;
+a[3]=32;
+a[4]=3;
+
+int[] a = new int[] {12,5,32,55,2};
+//		for(int i=0;i<a.length;i++) {
+//			System.out.println(a[i]);
+//		}
+		for (int i : a) {
+			System.out.println(i);
+		}
+
+How the above foreach loop (generalized foreach loop ) getting executed ???
+
+At first i points to the first element in array A, after processing first element, 
+it checks next element is there or not by using hasMoreElements() method. 
+
+if hasMoreElements() returns true, it moves to the next element, by using nextElement() 
+
+it repeats as soon as hasMoreElements() returns true. 
+
+
+
+
+
+
+
+
 
 
 

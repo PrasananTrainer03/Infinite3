@@ -64,6 +64,76 @@ toString() : This method will be called automatically once you print the object.
 
 As you print the object, the code which is there in toString() will be executed. 
 
+static variable :
+
+These are the variables that which retains values irrespective of type of object. 
+
+these are called class variables. 
+
+In java, if you find the keyword static, please ensure it belongs to class. 
+
+static constructor : 
+____________________
+
+These are the constructors, that which are to be called before control reaches the 
+entrypoint. These constructors will not be overloaded. 
+These constructors are used to initilize the static variables of the class. 
+In java, we don't have any static constructor, only static { } will act as static constructor.
+
+static methods : 
+
+These are the methods, that which are to be called by using class_name. 
+
+No Object required to call these methods. 
+
+Inheritance : 
+
+The concept of deriving a new class from already existing class known as inheritance,
+the class which derived known as derived class, the class from which its derived
+known as base class. 
+
+Through inheritance, we can reduce the size of the program. 
+
+class First {
+...
+...
+}
+
+class Second extends First {
+....
+....
+....
+}
+
+Once you create an object to Second class, then you can access all 
+
+public/protected and friendly members of base class. 
+
+super : If you want to pass values from derived class to base class, then we need 
+the help of super keyword. 
+
+It has 2 forms as 
+
+	(i) super as a keyword
+
+	(ii) super as a constructor 
+
+		If you want to pass values from derived class to base class, 
+		then we need the help of super constructor. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

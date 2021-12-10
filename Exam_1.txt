@@ -1,0 +1,101 @@
+What would be output for the code below
+
+class P1 {
+   public static void main(String[] args) {
+        System.out.println("5" +3+8);
+	System.out.println("5" + (3+8));
+        System.out.println("5+3" + i);
+  }
+}
+
+___________________________________________________________________________________
+
+class P2 {
+   public static void main(String[] args) {
+        int i=10;
+	int j=i++;
+        System.out.println(i);
+  }
+}
+
+___________________________________________________________________________________
+
+class P3 {
+   public static void main(String[] args) {
+        int i=10;
+	j=i++ + i++ + ++i + ++i + i++;
+        System.out.println(j);
+  }
+}
+
+________________________________________________________________________________________
+
+
+class P4 {
+    public static void main(String[] args) {
+        int ch='A';
+	System.out.println(ch);
+   }
+
+}
+
+_______________________________________________________________________________________
+
+
+class P5 {
+   public static void main(String[] args) {
+      int x;
+      System.out.println(x);
+   }
+}
+
+_______________________________________________________________________________________
+
+class P6 {
+    int x;
+    public static void main(String[] args) {
+        System.out.println(new P6().x);
+    }
+}
+
+___________________________________________________________________________________________
+
+class P7 {
+   boolean climate;
+   public static void main(String[] args) {
+       System.out.println(new P7().climate);
+   }
+}
+______________________________________________________________________________________
+
+
+class P8 {
+   public static void main(String[] args) {
+      String[] names = new String[] {"Shahida","Swati"};
+      String s1="Shahida";
+      System.out.println(s1.equals(names[0]));
+   }
+}
+
+___________________________________________________________________________________________
+
+class P9 {
+    public static void main(String[] args) {
+         for(int i=0;i<9;i++) {
+	    System.out.println("Hi");
+	    i=9;
+         }
+   }
+}
+
+__________________________________________________________________________________________
+
+class P10 {
+    public static void main(String[] args) {
+         byte b=125;
+	 b+=10;
+	 System.out.println(b);
+   }
+}
+
+ 

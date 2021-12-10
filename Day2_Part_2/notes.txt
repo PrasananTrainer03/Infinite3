@@ -1,0 +1,91 @@
+There are 2 types of memories as 
+
+1) STACK
+
+2) HEAP 
+
+Value types will be stored in STACK memory, and reference types will be stored in HEAP memory. 
+
+Boxing and Unboxing : 
+______________________
+
+The process of converting value types to reference type known as boxing, and reference type to value type
+known as unboxing. 
+
+Object is type, that which can be used for boxing and unboxing. 
+
+int x;
+
+x="Hello";
+x=12;
+x=12.5;
+
+Object x;
+
+x="Hello";
+x=12;
+x=12.5;
+
+Once in object format, we cannot perform any operations, then we need to unbox 
+and then only we can perform the operations. 
+
+Method Overloading : 
+
+The concept of using the same method name w.r.t Different data types or different 
+parameters known as method overloading. 
+
+Here, the method name must be same, but no.of parameters or type of parameters we 
+are passing are different. 
+
+class Demo {
+   int a,b;
+   a=5;
+   b=8;
+}
+
+Why code will not compile is a class cannot contains code directly,
+as assignmenet statements must be in method not in class. 
+
+Then, how to give default values, then we need the help of constructors. 
+
+A constructor is a special member, which used to initilize the member variables of the class
+It is special because it has the same name as that of class name. 
+
+Rules : 
+________
+
+   -> It will not contains any return type.
+   -> It will not return any value. 
+   -> It will be invoked automatically once the instance of the class created. 
+   -> A constructor can be overloaded. 
+
+
+toString() : This method will be called automatically once you print the object. 
+
+As you print the object, the code which is there in toString() will be executed. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

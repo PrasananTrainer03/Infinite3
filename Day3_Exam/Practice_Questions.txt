@@ -1,0 +1,20 @@
+1) Write a Program to display a number in english words from 1 to 9999
+
+Example : 
+
+123 means One Hundred twenty Three
+
+400 means Four Hundred 
+
+7890 Seven Thousand Eight Hundred and Ninty Only
+
+2) Write a Program to Display a number in Rowman format from 1 to 500
+
+3) Write a Program to implement multiplication of 2 numbers (100 digit * 100 digit) as
+
+Example : 
+
+number 1 is : 85838348343858329858735782345873257823875234875823748243682348523874532874587238572386585885
+number 2 is : 58858683958283975238795387858585868838284858496487958358896438628458385888498743598325858555
+
+need to multiply and give exact result

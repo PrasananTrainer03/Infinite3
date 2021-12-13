@@ -1,0 +1,105 @@
+Abstract Class : 
+
+   A class, that which can be created, but not implemented and instantiated known as Abstract class. 
+
+Abstract class contains abstract and non-abstract methods, only abstract methods needs to be overrided 
+mandetorily by the derived class. 
+
+Interface : 
+
+Java does not support the concept of multiple inheritance, to achieve this we need the help of interface. 
+
+An interface contains method declaration, and the implementation can be done in the corresponding class, 
+you can add more than one interface to the particular class. 
+
+Difference between interface and abstract class :
+___________________________________________________
+
+
+	-> An abstract class contains both abstract and non-abstract methods, where interface contains
+		only abstract methods.
+
+	-> interface methods are public and abstract by default. 
+
+	-> Multiple Inheritance can be achieved by using interfaces
+
+	-> An interface can be called from anywhere to anywhere. 
+
+interface can be added to the class, by using implements keyword 
+
+Exception Handling: 
+____________________
+
+it is a mechansim of handling the runtime errors, during execution of the program. 
+There are 2 types of errors known as 
+
+	(i) Compile Time
+
+	(ii) Runtime 
+
+Runtime errors occurs, during runtime if we pass invalid values, the type of errors we are getting known 
+as runtime errors. 
+
+By using Exception Handling, we can overcome the runtime errors. 
+
+To handle errors, we have 3 blocks as 
+
+	(i) try block : This block contains statements, in which there is possibility of getting runtime errors.  The statements which are placed in this block are treated as heavy weighted statements as JVM allocates excess memory to them. 
+
+	(ii) catch block : Once exception raises in try block, then the control will be forwarded to catch block, this block contains alternate statements for exceptions raised in try block. One try block can contains multiple catch blocks. 
+
+	(iii) finally block : This block contains statements that needs to be executed mandetorily irrespective of try and catch blocks. This block is not mandetory, but all the statements which are placed in the block are executed as mandetory statements. 
+
+Exception is the top most class, from which all kinds of exceptions are derived. 
+
+syntax : 
+________
+
+try {
+....
+....
+....
+} catch(Exception e) {
+....
+....
+....
+} finally {
+....
+....
+....
+}
+
+printStackTrace() : An Exception contains all details like 
+
+	errorMessage()
+	Exception class
+	Line Number 
+
+all details are enclosed by using printStackTrace()
+
+(91) 9391774498
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

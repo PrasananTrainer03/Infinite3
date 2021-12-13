@@ -6,7 +6,7 @@ Example :
 
 400 means Four Hundred 
 
-7890 Seven Thousand Eight Hundred and Ninty Only
+7890 Seven Thousand Eight Hundred Ninty 
 
 2) Write a Program to Display a number in Rowman format from 1 to 500
 

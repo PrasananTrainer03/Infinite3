@@ -77,7 +77,51 @@ printStackTrace() : An Exception contains all details like
 
 all details are enclosed by using printStackTrace()
 
-(91) 9391774498
+Types of Exceptions : 
+
+There are 2 types of exceptions known as 
+
+	(i) Checked Exceptions
+
+		These are the exceptions, that which occurs at compile time, during compilation JVM 
+	feels some erroneous code is there and stops the execution at compile time, can be handled at 
+	method level by using throws keyword. 
+
+	(ii) Unchecked Exceptions 
+
+		These are the exceptions that which occurs at runtime, can be handled by using 
+	try...catch block. 
+
+Date class availabe in util package, which allows you to deal with date types. 
+
+SimpleDateFormat : Used to convert string to date and date to string. 
+
+SimpleDateFormat sdf = new SimpleDateFormat("format");
+
+sdf.format() : converts date to string
+
+sdf.parse() : Converts string to date 
+
+throw keyword : If you want to throw the exception objects, based on condition, 
+then we need the help of throw keyword. 
+
+Example :
+
+Write a Program as
+accept a number,
+
+   if number < 0 then throw NumberFormatException
+   if number = 0 then throw ArithmeticException 
+
+else print that number. 
+
+What is the difference between throws and throw keyword 
+
+throws used to throw an exception class, where throw keyword allows you to throw
+an exception object. 
+
+throws keyword will be at method leve, where throw keword used at code level. 
+
 
 
 

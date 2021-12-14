@@ -304,6 +304,48 @@ getText() : Used to read the text in the TextField.
 setText() : used to place text in the textfield. 
 
 
+What are drawbacks with collections. 
+
+Will not provide security to data, as any data we can add into them. 
+
+To overcome this we need the help of generics. 
+
+Generics provides an opportunity to define data type at runtime. 
+
+If you want to make any method as write once and apply for all types, then we need the help of generics. 
+
+Generics are represented by using <T>. means in place of <T> we can pass any type (value type or reference type or custm type) 
+
+Advantages : 
+____________
+
+	(i) Provides security to the data
+
+	(ii) No Typecasting required
+
+	(iii) Reduces the size of the program
+
+	(iv) Write once and apply for all types. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

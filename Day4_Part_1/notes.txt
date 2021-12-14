@@ -1,0 +1,83 @@
+How to implement custom exceptions. 
+
+You can create Custom Exceptions by using Exception class. Any class that which derived from Exception class can be treated as Custom Exception. 
+
+System exceptions are inadequate to handle in all situations, then we need the help of custom exceptions. 
+
+Write a program as sum of 2 numbers 
+
+	if any number < 0 then throw NegativeException
+
+	if anu number = 0 then throw NumbeZeroException
+
+	else print sum. 
+
+Write program to accept an email and check its valid email or not 
+
+means 
+
+	if '@' not found then throw InvalidEmailException
+
+	if userName < 8 chars and > 16 chars then throw InvalidUserException. 
+
+prasanna.javaworld@gmail.com
+
+Scanner class : Its from util package, which allows you to read data from the keyboard. 
+
+Scanner sc = new Scanner(System.in);
+
+next() -> used to read one word from keyboard.
+nextLine() -> used to read a sentence
+nextInt() -> used to read numbers
+nextDouble() -> Used to read double value. 
+
+Collections : 
+_______________
+
+What is the major drawback with arrays 
+
+Arrays are static data structures, as once they are assigned we cannot change the 
+size at runtime. This problem we need to overcome, then we need the help of 
+Collections. 
+
+Collections used to store data w.r.t. Object format, and they can grow to any size. 
+
+If you want to add the elements, irrespective of size then we need the help of 
+collections. 
+
+Collections are falling from util package. 
+
+There are 3 top level interfaces we have in collections known as 
+
+List Interface : This interface extends the collection to handle sequence or a list of objects. Elements can be inserted in a list and can be accessed from a list using their index pos. in the list. 
+
+ArrayList and LinkedList are falling under List interface. 
+
+
+
+Set interface : This interface extends the Collection interface to handle sets containing unique elements.  This interface does not allow any duplicate elements in a set. 
+
+	HashSet and LinkedHashSet are falling under Set interface. 
+
+HashSet allows you to display values w.r.t. Random order, where 
+
+LinkedHashSet used to display values w.r.t. Insertion Order. 
+
+Wrapper classes : These are called primitive data type classes. 
+
+int is value type, where Integer is the wrapper class. 
+
+
+
+
+SortedSet interface : Used to extends the Set interface to handle the sorted sets. The elements of a set are ordered in ascending order in a sorted set.  TreeSet is falling under SortedSet
+
+
+
+
+
+
+
+
+
+

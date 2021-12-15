@@ -1,0 +1,125 @@
+	String s1="Hello";
+		s1.concat(" Word");
+		System.out.println(s1);
+
+The above code gives output as Hello, because strings are immutable, means once they are assigned they cannot be changed by using any string methods. 
+
+To overcome, this we need the help of StringBuilder. 
+
+Which allows you to write multiple strings, and perform all operations on the given string. 
+
+Properties : 
+
+Provides an opportunity to protect a field in a class. 
+
+If you want to represent method as a field, then we need the help of properties. 
+
+There are 2 types of proerties as 
+
+	1) ReadOnly
+
+	2) WriteOnly 
+
+	3) ReadWrite 
+
+
+Application Architectures : 
+____________________________
+
+
+	There are 3 types of application architectures as 
+
+		(i) Single Tier
+
+		(ii) Two-Tier
+
+		(iii) Three-Tier 
+
+
+	 Each application architecture contains 3 layers as 
+
+		(i) User Services
+
+		(ii) Business Services
+
+		(iii) Data Services 
+
+
+Project Question : 
+
+Create a class as Student 
+
+public class Student {
+
+	private int sno;
+	private String name;
+	private String city;
+	private double cgp;
+
+}
+
+Now Perform the below operations 
+
+1) ShowAll Student
+2) Search Student
+3) Add Student
+4) Update Student
+5) Delete Student 
+
+Validations : 
+_______________
+
+    sno cannot be negative or zero
+    name contains min. 5 chars
+    city contains min 3 chars
+    cgp cannot be negative or zero
+
+
+If validation fails, raise an exception. 
+
+Files : 
+________
+
+A file is a collection of data, that which allows you to store the output permanently. To deal with files, we need
+
+java.io package. 
+
+To deal with files, we need the help of File class. 
+
+File f1 = new File(filename);
+
+FileReader : This class allows you to read data w.r.t. unicode format. 
+Means only in plain text. 
+
+FileReader fr = new FileReader(fileName);
+
+read() : Used to read data char/char and returns ascii value. 
+
+FileWriter : Allows you to write the content into the file. 
+
+FileWriter fw = new FileWriter(fileName);
+write() : used to write data char/char into specified file. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

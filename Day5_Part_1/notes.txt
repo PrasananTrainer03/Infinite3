@@ -100,6 +100,42 @@ FileWriter : Allows you to write the content into the file.
 FileWriter fw = new FileWriter(fileName);
 write() : used to write data char/char into specified file. 
 
+FileInputStream : used to read data w.r.t. Stream of bytes. 
+
+read() : used to read data char/char and returns ascii value. 
+
+FileOutputStream : used to write data w.r.t Stream of byres.
+
+write() : used to write data into the files. 
+
+DataOutputStream : used to write data w.r.t. primitive types. 
+
+writeInt()
+writeUTF()
+writeDouble()
+writeBoolean()
+
+DataInputStream : used to read primitive data from the files. 
+
+readInt()
+readUTF()
+readDouble()
+readBoolean()
+
+ObjectOutputStream : used to write Objects into the file.
+
+writeObject() : Used to write object into the file. 
+
+
+
+
+
+
+
+
+
+
+
 
 
 

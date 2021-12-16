@@ -1,0 +1,26 @@
+You need to perform below operations as 
+
+1) Add Agent
+2) Show Agent
+3) Search Agent
+4) Update Agent
+5) Delete Agent 
+
+Validations : 
+______________
+
+-> AgentId cannot be 0 or negative
+
+-> Name contains min. 5 characters
+
+-> City No Validations. (you can give null also if you want)
+
+-> payMode will be either 1 or 2 or 3 
+
+-> premium must be between 1000 and 90000
+
+Create an Exception class as AgentException and throw exception error messages. 
+
+This task to be finished by 10.30 
+
+then we start with Files and JDK 1.8 new features in first half.

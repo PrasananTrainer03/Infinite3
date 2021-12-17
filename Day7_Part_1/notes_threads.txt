@@ -1,0 +1,110 @@
+
+
+1) Multi-Tasking
+
+2) Multi-Programming
+
+3) Multi-Threading 
+
+Thread is a light weight process.  
+
+The sequential execution of path of program. 
+
+In Multi-threading more than one task can be performed in a single program simultaneously. 
+
+If we want to use best utilization of CPU resources, then we need the help of multi-threading. 
+
+Idle time kept to minimum.
+
+In java threads contains various methods as
+
+1) start()
+
+	Ensures, we need to start any given thread. 
+
+2) run()
+	
+	Once you are invoked with start(), the code which is there in run() gets executed. 
+
+3) sleep()
+
+	Makes a thread to wait for specific milliseconds time. 
+
+4) suspend()
+
+	Used to suspend the running thread. 
+
+5) resume()
+
+	Resumes the suspended thread. 
+
+6) abort()
+
+	Used to stop the thread forcefully. 
+
+Thread Life Cycle 
+__________________
+
+During the life time of a thread, there are many states it can enter. 
+
+1. Newborn state
+
+Newborn State : When we create a thread object, the thread is born and is said to be in newborn state. Here the thread is not scheduled for running. 
+
+2. Runnable state
+
+This state means the thread is ready for execution and is waiting for the availablility of the processor. That is, the thread has joined the queue of threads that are waiting for execution. If all threads have equal priority then the time slots for execution in first-come first-serve manner. 
+
+
+3. Running state 
+
+	The Processor has given its time to the thread for its execution, the thread runs until it relinquishes control on its own or it is preempted by a higher priority thread. 
+
+4. Blocked state 
+
+	A thread enters into blocked state from running state, when it is 
+		
+		-> Sleeping
+		-> Waiting
+		-> Supspended by another thread.
+
+5. Dead State 
+
+	A thread enters into dead state, when 
+
+		=> All the statements in the thread are executed successfully
+
+		=> Its used by abort() method. 
+
+How to create a thread,
+
+A thread can be created in 2 ways as 
+
+extends Thread
+
+implements Runnable 
+
+join : Used to make group of threads, ensures in list of threads if you want to form any group, then we need the help of join. 
+
+Synchronization :
+
+If two or more threads trying to access same resource, then it leads to strange results. This problem known as
+synchronization. To overcome this, we need the help of synchronizaton ensures unless one thread leaves particular location another thread will not be entered. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

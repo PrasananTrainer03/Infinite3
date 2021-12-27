@@ -1,0 +1,19 @@
+
+
+Employee Leave history
+
+select * from Leave_history where Emp_Id=1000
+
+Manager Pending Leaves 
+
+Assume, 1000 is manager for 2000 and 3000, then 
+
+all pending leaves of 2000 and 3000 to be printed if i enter 2000 managerId 
+
+In ApplyLeave, please do the following changes
+
+Perform weekend calculations as if you apply leave then don't deduct sat/sun.
+
+Assume, you applied from Jan 6 2022 to Jan 11 2022 then 
+
+then actually its 6 days, but sat/sun are coming so deduct only 4 days

@@ -1,0 +1,80 @@
+Web Applications : 
+____________________
+
+These are the applications, that which are to be called from various places rather than where they are created. 
+
+If you want to make any distributed or robust applications, then we need the help of web applications. 
+
+You can create web applications in 2 ways as 
+
+(i) Scripting Languages
+
+	These are the languages, that which are interpreted, during runtime they takes lot of time to execute.
+
+(ii) Programming Languages 
+
+	These are the langauges,that which are compiled first, during runtime they takes very less time to 
+		execute. 
+
+In Web Applications, we can implement 
+
+	(i) Client-Side 
+
+		Enables you to access the application from client. 
+
+		No Network traffic
+
+		Execution will be faster.
+
+	(ii) Server-Side 
+
+		Enables you to access the application from server
+
+		Network traffic is high
+
+		A bit slower.
+
+*** Any intranet based application w.r.t. Min. security, plesae opt for client-side
+scripting ***
+
+*** Any internet based application w.r.t. Min. security, please opt for both
+client-side/server-side scripting ***
+
+*** Any internet based application w.r.t. High Security, please opt for 
+server-side scripting ***
+
+
+HTML (HyperText Markup Language) 
+
+which used to create any sample web pages. 
+
+We can represent data using tags.
+
+To start with HTML, we need
+
+<html>
+</html>
+
+<head>
+</head> : contains the global content for the given page. 
+
+<title> </title> : used to display heading on title bar. 
+
+<body>
+</body> : Contains the actual content for the given page. 
+
+Definition Language (dl)
+
+<dl>
+</dl>
+
+<dt> : Definition Term 
+
+<dd> : Definition Description
+
+Anchor Tag. 
+
+Used to link one page with another page. 
+
+
+

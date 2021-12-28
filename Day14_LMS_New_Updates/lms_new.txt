@@ -1,0 +1,27 @@
+Change the LMS Project, as 
+
+Requirement Change 1 
+_____________________
+
+Apart from WeekEnd holidays, if they applied on specific days, dont mark as leave 
+
+Example : 
+
+Jan 14 2022 pongal so no leave to be marked
+Jan 26 2022 republic day so no leave to be marked 
+Aug 15 2022 independence day as no leave to be marked
+
+if any leave falling under these days don't mark as leave
+
+
+Requirement Change 2
+
+If any employee applied leave on given period, it need to give error message as "You already applied leave on given dates" 
+
+Example 
+
+Employee 2001 applied leave from Jan 10 2022 to Jan 13 2022
+
+Then if he tries to apply leave from Jan 9 to Jan 11 2022 then it has to throw
+error as "You already applied Leave on given Dates"
+

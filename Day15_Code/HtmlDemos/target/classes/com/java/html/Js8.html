@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+	function show() {
+		var result = "";
+		if (frmData.chkShahida.checked==true) {
+			result+="Shahida is Present today...<br/>";
+		} else {
+			result+="Shahida is Absent Today...<br/>";
+		}
+		
+		if (frmData.chkSekhar.checked==true) {
+			result+="Sekhar is Present Today...<br/>";
+		} else {
+			result+="Sekhar is Absent Today...<br/>";
+		}
+		
+		if (frmData.chkSirisha.checked==true) {
+			result+="Sirisha is Present Today...<br/>";
+		} else {
+			result+="Sirisha is Absent Today...<br/>";
+		}
+		
+		document.getElementById("result").innerHTML=result;
+	}
+</script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<form name="frmData">
+		<center>
+			Shahida : 
+			<input type="checkbox" name="chkShahida" onchange="show()" /> <br/>
+			Sekhar : 
+			<input type="checkbox" name="chkSekhar" onchange="show()" /> <br/> 
+			Sirisha : 
+			<input type="checkbox" name="chkSirisha" onchange="show()" /> <br/> 
+			<hr/>
+			<span id="result"></span>
+		</center>
+	</form>
+</body>
+</html>

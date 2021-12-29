@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+	var questions = [
+		"1. What is Object Oriented Programming",
+		"2. Which used to print value in java",
+		"3. ASCII stands for",
+		"4. FTP known as",
+		"5. C language implemented By"
+	];
+	var questionNo;
+	var total = questions.length;
+	function show() {
+		//alert(total);
+		questionNo=0;
+		document.getElementById("question").innerHTML=questions[questionNo];
+	}
+	
+	function next() {
+		questionNo++;
+		if (questionNo==total) {
+			alert("No More Questions after this...");
+			questionNo=total-1;
+		}
+		document.getElementById("question").innerHTML=questions[questionNo];
+	}
+	function previous() {
+		questionNo--;
+		if (questionNo < 0) {
+			questionNo=0;
+			alert("No More Questions Before This...")
+		}
+		document.getElementById("question").innerHTML=questions[questionNo];
+	}
+</script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body onload="show()">
+	<p id="question"></p>
+	<br/><br/>
+	<input type="button" value="Next" onclick="next()" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="button" value="Previous" onclick="previous()" /> 
+</body>
+</html>

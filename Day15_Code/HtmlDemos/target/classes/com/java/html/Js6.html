@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+	function show() {
+		var gen = frmData.gen.value;
+		alert("Gender   " +gen);
+	}
+</script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<form name="frmData">
+		Gender : 
+		<input type="radio" name="gen" value="Male" /> Male 
+		<input type="radio" name="gen" value="Female" /> Female
+		<br/><br/> 
+		<input type="button" value="Show" onclick="show()" />
+	</form>
+</body>
+</html>

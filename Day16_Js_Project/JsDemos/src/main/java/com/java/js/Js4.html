@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+	function show() {
+		var today = new Date();
+	//	var fullYear = today.getFullYear();
+		var future = new Date("January 14, 2022");
+		var diff = future.getTime() - today.getTime();
+	    var days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+	    var str = "Only <u>" + days + "</u> days left 'till Pongal!' ";
+	    document.getElementById("result").innerHTML=str;
+	}
+</script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body onload="show()">
+	<p id="result">
+	</p>
+</body>
+</html>

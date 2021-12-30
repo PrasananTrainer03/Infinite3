@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+	function dateDemo() {
+		var obj = new Date();
+		var month = obj.getMonth();
+		month++;
+		var res="";
+		res+="Date is   " +obj.getDate() + "<br/>";
+		res+="Month is  " +month + "<br/>";
+		res+="Year is  " +obj.getFullYear() + "<br/>";
+		res+="Hours is  " +obj.getHours() + "<br/>";
+		res+="Minutes  is  " +obj.getMinutes() + "<br/>";
+		res+="Seconds is  " +obj.getSeconds() + "<br/>";
+		document.getElementById("result").innerHTML=res;
+	}
+</script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body onload="dateDemo()">
+	<p id="result"></p>
+</body>
+</html>

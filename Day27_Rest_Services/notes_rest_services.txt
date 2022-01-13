@@ -1,0 +1,120 @@
+Webservices : 
+______________
+
+Contains webmethods, that can be called across various programming languages. 
+
+If you want to make any method as write once and call from any programming language, then we need the help
+of webservice. 
+
+There are 2 types of webservices as
+
+1) SOAP Based
+
+	These are used to deal data using xml standards. 
+
+	It has various standards as 
+
+	(i) SOAP : Simple Object Access Protocol 
+
+		it is a communication protocol, that which enables the communcation between webservice 
+		 and client. 
+
+	(ii) UDDI (Universal Description, Discovery and Integration) 
+
+		It is a place where we can register and deploy the webservices. 
+
+	(iii) WSDL (Webservice Description Language) 
+
+		It generates xml vocoblury for web methods which are there in service. 
+
+
+SOAP based services are outdated, because every time, they pass the data w.r.t. xml format
+but, all the time xml format processing will not be possible. Then, we need the help of
+REST based services.
+
+2) REST Based 
+
+      Representational State Transfer 
+
+	These are services, that which allows you process data in various formats as
+
+		(i) Plain Text 
+		(ii) Html
+		(iii) XML
+		(iv) JSON 
+		etc... various formats we can process. 
+
+Rest services are very fast, as they work purely w.r.t. Annotation based. 
+
+REST Services have 4 http verbs as 
+
+GET
+
+@GET -> Used when you need to retreive any resources from server. 
+
+POST  -> Used for INSERT operation
+
+@POST
+
+PUT -> Used for insert/update operation.
+
+@PUT
+
+DELETE -> Used for Delete Operation
+
+@DELETE 
+
+@Path annotation gives alias name to method and as well as for class. 
+
+@Produces
+The
+@Produces annotation is used to specify the MIME media types of
+representations a resource can produce and send back to the client: for
+example,example,"text/ (Multi-purpose internet mail Extension) 
+
+
+
+<dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-moxy</artifactId>
+        </dependency>
+        <dependency>
+    <groupId>jakarta.xml.bind</groupId>
+    <artifactId>jakarta.xml.bind-api</artifactId>
+    <version>2.3.2</version>
+</dependency>
+
+<!-- Runtime, com.sun.xml.bind module -->
+<dependency>
+    <groupId>org.glassfish.jaxb</groupId>
+    <artifactId>jaxb-runtime</artifactId>
+    <version>2.3.2</version>
+</dependency>
+
+
+How to pass parameters in restfull webservices. 
+
+@PathParam : Used to pass parameters in restfull webservices. 
+
+
+http://localhost:8080/RestServiceExample/webapi/calc/mult/12/5
+http://localhost:8080/RestServiceExample/webapi/calc/sum/12/5
+http://localhost:8080/RestServiceExample/webapi/calc/sub/12/5
+http://localhost:8080/RestServiceExample/webapi/name/info/Divyani
+http://localhost:8080/RestServiceExample/webapi/hello/omkar
+http://localhost:8080/RestServiceExample/webapi/hello
+http://localhost:8080/EmployServiceExample/webapi/employService
+http://localhost:8080/EmployServiceExample/webapi/employService/1
+
+http://localhost:8080/LmsServiceExample/webapi/employee
+http://localhost:8080/LmsServiceExample/webapi/leave/1
+http://localhost:8080/LmsServiceExample/webapi/leave/history/1000
+http://localhost:8080/LmsServiceExample/webapi/leave/pending/1000
+
+
+
+
+
+
+
+

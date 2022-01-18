@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC 
+"-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="beanDinesh" class="com.java.spr.Person">
+		<property name="id" value="1"/>
+		<property name="name" value="Dinesh Arjun"/>
+		<property name="jobDetails">
+			<bean class="com.java.spr.JobDetails">
+				<property name="job" value="Software Engineer"/>
+				<property name="company" value="Infinite"/>
+				<property name="location" value="Bangalore"/>
+			</bean>
+		</property>
+		<property name="familyDetails">
+			<bean class="com.java.spr.Family">
+				<property name="city" value="Coimbatore"/>
+				<property name="state" value="TN"/>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="beanShahida" class="com.java.spr.Person">
+		<property name="id" value="2"/>
+		<property name="name" value="Sheik Shahida"/>
+		<property name="jobDetails">
+			<bean class="com.java.spr.JobDetails">
+				<property name="job" value="Software Engineer"/>
+				<property name="company" value="Infinite"/>
+				<property name="location" value="Bangalore"/>
+			</bean>
+		</property>
+		<property name="familyDetails">
+			<bean class="com.java.spr.Family">
+				<property name="city" value="Guntoor"/>
+				<property name="state" value="AP"/>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="beanJaison" class="com.java.spr.Person">
+		<property name="id" value="1"/>
+		<property name="name" value="Jaison Lobo"/>
+		<property name="jobDetails">
+			<bean class="com.java.spr.JobDetails">
+				<property name="job" value="Software Engineer"/>
+				<property name="company" value="Infinite"/>
+				<property name="location" value="Bangalore"/>
+			</bean>
+		</property>
+		<property name="familyDetails">
+			<bean class="com.java.spr.Family">
+				<property name="city" value="Mangalore"/>
+				<property name="state" value="KA"/>
+			</bean>
+		</property>
+	</bean>
+</beans>

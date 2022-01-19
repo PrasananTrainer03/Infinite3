@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC 
+"-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="studentSumanth" class="com.java.spr.Student">
+		<property name="sno" value="1"/> 
+		<property name="firstName" value="Sumanth"/>
+		<property name="lastName" value="Tadla"/>
+	</bean>
+	<bean id="studentHarish" class="com.java.spr.Student">
+		<property name="sno" value="2"/> 
+		<property name="firstName" value="Harish"/>
+		<property name="lastName" value="Sai"/>
+	</bean>
+	<bean id="studentSarath" class="com.java.spr.Student">
+		<property name="sno" value="3"/> 
+		<property name="firstName" value="Sarath"/>
+		<property name="lastName" value="Madugula"/>
+	</bean>
+	<bean id="trainerBean" class="com.java.spr.Trainer">
+		<property name="trainerName" value="Prasanna Pappu"/>
+		<property name="location" value="Hyderabad"/>
+		<property name="studentList">
+			<list>
+				<ref bean="studentSumanth"/>
+				<ref bean="studentHarish" /> 
+				<ref bean="studentSarath" />
+			</list>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+	  <h:head>    
+        <title>Edit Your Record</title>
+    </h:head>
+    <h:body>
+    	 <h:form id="form" class="form-horizontal">
+    	 	<div class="form-group">
+                <div class="col-sm-2"></div>
+                <h2 style="text-align: center" class="col-sm-4">Edit Your Record</h2>
+            </div>
+            <hr/>
+             <div class="form-group">
+                <h:outputLabel for="employNo" class="control-label col-sm-2">Employ No</h:outputLabel>
+                <div class="col-sm-4">
+                    <h:inputText id="empno-id" value="#{editEmploy.empno}" class="form-control"/>
+                </div>
+            </div>
+             <div class="form-group">
+                <h:outputLabel for="employName" class="control-label col-sm-2">Employ Name</h:outputLabel>
+                <div class="col-sm-4">
+                    <h:inputText id="name-id" value="#{editEmploy.name}" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <h:outputLabel for="gender" class="control-label col-sm-2">Gender</h:outputLabel>
+                <div class="col-sm-4">
+                    <h:selectOneRadio value="#{editEmploy.gender}">
+                        <f:selectItem itemValue="MALE" itemLabel="Male" />
+                        <f:selectItem itemValue="FEMALE" itemLabel="Female" />
+                    </h:selectOneRadio>
+                </div>
+            </div>
+             <div class="form-group">
+                <h:outputLabel for="employDept" class="control-label col-sm-2">Employ Department</h:outputLabel>
+                <div class="col-sm-4">
+                    <h:inputText id="dept-id" value="#{editEmploy.dept}" class="form-control"/>
+                </div>
+            </div>
+             <div class="form-group">
+                <h:outputLabel for="employDesig" class="control-label col-sm-2">Employ Designation</h:outputLabel>
+                <div class="col-sm-4">
+                    <h:inputText id="desig-id" value="#{editEmploy.desig}" class="form-control"/>
+                </div>
+            </div>
+             <div class="form-group">
+                <h:outputLabel for="employBasic" class="control-label col-sm-2">Employ Salary</h:outputLabel>
+                <div class="col-sm-4">
+                    <h:inputText id="basic-id" value="#{editEmploy.basic}" class="form-control"/>
+                </div>
+            </div>
+             <div class="form-group">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-4">
+                    <center><h:commandButton value="Update" action="#{employ.update(editEmploy)}" class="btn btn-primary" style="width: 80px;"></h:commandButton></center>
+                </div>
+            </div>
+    	 </h:form>
+    </h:body>
+</html>

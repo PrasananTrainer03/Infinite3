@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+	<h:body>
+		<h3>Create User Infinite Training</h3>
+		<h:form>
+			       Employ No : 
+        <h:inputText value="#{employ.empno}" />
+        
+        <br/><br/>
+        Employ Name  : 
+		<h:inputText value="#{employ.name}" />
+		<br/><br/>
+        Department : 
+		<h:inputText value="#{employ.dept}" />
+		<br/><br/>
+		Gender : 
+<h:selectOneRadio value="#{employ.gender}">
+   <f:selectItem itemValue="MALE" itemLabel="Male" />
+   <f:selectItem itemValue="FEMALE" itemLabel="Female" />           
+</h:selectOneRadio>
+ <br/><br/>
+  Designation  : 
+		<h:inputText value="#{employ.desig}" />
+		<br/><br/>
+        Basic : 
+		<h:inputText value="#{employ.basic}" />
+		<br/><br/>
+      <h:commandButton value="Save" action="#{employ.saveEmploy(employ)}" class="btn btn-success" style="width: 80px;"/>
+ 
+  
+		</h:form>
+	</h:body>
+</html>

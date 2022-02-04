@@ -1,0 +1,21 @@
+Task 1 :
+_________
+
+Perform CRUD operations for CMS Menu Table using JSF 
+
+For AddMenu operation, please implement validations. 
+
+Task 2 : 
+_________
+
+Display Customer, Vendor and Wallet Tables using JSF (Accordion) JSF Prime Faces
+
+Task 3 : 
+__________
+
+Display all Customer Ids in drop down, once you change it has to print all the orders from Orders table. 
+
+
+First question mandetory, in task 2 and 3 do any one 
+
+

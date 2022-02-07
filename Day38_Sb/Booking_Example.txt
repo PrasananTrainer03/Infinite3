@@ -1,0 +1,32 @@
+drop database if exists hms;
+
+create database hms;
+
+use hms;
+
+Create Table Room
+(
+   RoomID varchar(10) primary key,
+   Type varchar(10),
+   Status varchar(10) default 'Available',
+   CostPerDay INT
+);
+
+
+Create Table Booking
+(
+  BookId varchar(10) primary key,
+  RoomID varchar(10),
+  CustName varchar(30),
+  City varchar(30),
+  BookDate date,
+  ChkDate date
+);
+
+Create Table Billing 
+(
+   BookID varchar(10),
+   RoomID varchar(10),
+   NoOfDays INT,
+   BillAmt INT
+);

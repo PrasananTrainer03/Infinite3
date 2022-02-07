@@ -1,0 +1,14 @@
+Add 10 records to Room table, and change some status to Booked 
+
+-- Operations
+
+1) Show Rooms
+
+2) Show Available Rooms
+
+3) Search By RoomID
+
+4) Show Booked Rooms 
+
+5) AddRoom (Post Method) 
+

@@ -12,3 +12,5 @@ Add 10 records to Room table, and change some status to Booked
 
 5) AddRoom (Post Method) 
 
+Please finish by 10.30 as then i will explain CMS project Client Portion of Search/Authentication and PlaceOrder(post) method(s)
+

@@ -1,0 +1,30 @@
+1) Display all records from Restaurant table
+
+2) Display all records from Menu table
+
+3) Apply INNER and LEFT Outer Join on restaurant and Menu Tables
+
+4) Display Common Records from Restaurant and Menu Tables
+
+5) Display All records from Restaurant for which Menu Items are not available (Which is in Restaurant Table, but not in Menu Table)
+
+6) Display all records from Customer table
+
+7) Write a query for Customer Authentication, as enter CustomerUserName and CustomerPassword and if both are correct then return 1 else return 0
+
+8) Display all records from Vendor Table
+
+9) Write Query for Vendor Authentication, as enter VendorUserName and VendorPassword and if both are correct then return 1 else return 0
+
+10) Display all menu items group by restaurant ID
+
+11) Display total menu items available for particular resturant id (group by)
+
+12) Display all records from wallet table
+
+13) Display all wallets for customer 1
+
+14) Dispaly CustomerId and total wallets Avaialble for Customer
+
+15) Display CustomerID and Total Wallets available for Customer for whose Total Wallets greater than 1
+

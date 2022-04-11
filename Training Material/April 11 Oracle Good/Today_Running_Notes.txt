@@ -1,0 +1,261 @@
+If you want to see UserName 
+
+show user;
+
+To see list of tables avaiable in current DB, then 
+
+select * from tab;
+
+To see the structure of table 
+
+desc table_name
+
+You can use output statement as 
+
+dbms_output.put_line() : used to display any value or message. 
+
+_________________________________________________________________
+
+Write HelloWorld program using Pl/Sql
+
+begin
+   dbms_output.put_line('Welcome to PL/SQL');
+end;
+
+______________________________________
+
+By Default, it dont print any message, to enable message, we need to give
+
+set serveroutput on;
+
+
+_______________________________________________________________
+
+
+declare 
+   a number:=8;
+   b number:=9;
+   c number;
+begin
+   c:=a+b;
+   dbms_output.put_line('Sum is ' ||c);
+end;
+
+_____________________________________________________________________
+
+declare
+   a number:=&a;
+   b number:=&b;
+   c number;
+begin
+   c:=a+b;
+   dbms_output.put_line('Sum is  ' ||c);
+end;
+
+______________________________________________________________________
+
+declare
+   eno number:=&eno;
+   nam varchar2(30); 
+   basic numeric(9,2);
+begin
+   select Ename,Sal into nam,basic from Emp where empno=eno;
+   dbms_output.put_line('Employ Name  ' ||nam);
+   dbms_output.put_line('Salary is  ' || basic);   
+end;
+
+______________________________________________________________________________
+
+
+Display Total Records avaiable in Emp table into plsql variable 
+
+declare
+   cnt number;
+begin
+   select count(*) into cnt from Emp;
+   dbms_output.put_line('Total Records Avaialble in Employ Table are  ' || cnt);
+end;
+
+________________________________________________________________________________
+
+
+Create Table Employ
+(
+   Empno number primary key,
+   Name varchar2(30),
+   Dept varchar2(30),
+   Desig varchar2(30),
+   Basic Number(9,2)
+);
+
+Insert into Employ(empno,name,dept,desig,basic) 
+values(1,'Harshit','Java','Programmer',99422);
+
+
+Insert into Employ(empno,name,dept,desig,basic) 
+values(2,'Kamali','Dotnet','Expert',88422);
+
+Insert into Employ(empno,name,dept,desig,basic) 
+values(3,'Krishnendu','Sql','Programmer',99422);
+
+commit;
+
+____________________________________________________________________________________________________
+
+Create or Replace procedure prcSayHello
+AS
+BEGIN
+    dbms_output.put_line('Welcome to PL/SQL Programming...');
+END;
+
+
+To Execute the Stored Procedure
+
+exec prcSayHello;
+
+To see list of stored procedures available in current oracle instance 
+
+select object_name,object_type,status from user_objects where object_type='PROCEDURE';
+
+
+____________________________________________________________________________________________________
+
+Create or replace procedure prcCalc(a number, b number)
+AS
+BEGIN
+    Declare
+	c number;
+    begin
+       c:=a+b;
+       dbms_output.put_line('Sum is  ' ||c);
+    end;
+END;
+
+-- To Execute
+
+exec prcCalc(12,5);
+
+_________________________________________________________________________________________________
+
+-- Write a Stored Procedure to Search Employ Record from Emp table 
+
+Create or replace Procedure prcEmploySearch(eno employ.empno%type)
+AS
+BEGIN
+    Declare
+       nam employ.name%type;
+       dpt employ.dept%type;
+       dsg employ.desig%type;
+       sal employ.basic%type;
+    begin
+        select Name,Dept,Desig,Basic INTO nam,dpt,dsg,sal from Employ where empno=eno;
+        dbms_output.put_line('Employ Name ' || nam);
+        dbms_output.put_line('Department  ' || dpt);
+        dbms_output.put_line('Designation  ' || dsg);
+        dbms_output.put_line('Salary ' ||sal);
+    end;
+END;
+
+To execute 
+
+exec prcEmploySearch(1);
+
+___________________________________________________________________________________________________
+
+Write a Stored Procedure to Insert Record into Employ Table 
+
+Create or replace procedure prcEmployInsert(eno employ.empno%type,
+					    nam employ.Name%type,
+					    dpt employ.Dept%type,
+					    dsg employ.Desig%type,
+					    bas employ.Basic%type)
+AS
+BEGIN
+    INSERT INTO Employ(empno,name,dept,desig,basic) values(eno,nam,dpt,dsg,bas);
+END;
+
+exec prcEmployInsert(5,'Muskan','Sql','Programmer',91223);
+_____________________________________________________________________________________________________
+
+To Update record in a table 
+_____________________________
+
+Update table_name set field1=value,field2=value,field3=value {where condition}
+
+
+Write a Stored Procedure to Update Record of Employ table 
+
+
+Create or replace procedure prcEmployUpdate(eno employ.empno%type,
+					    nam employ.Name%type,
+					    dpt employ.Dept%type,
+					    dsg employ.Desig%type,
+					    bas employ.Basic%type)
+AS
+BEGIN
+    Update Employ set Name=Nam,Dept=Dpt,Desig=dsg,basic=bas where empno=eno;
+END;
+
+exec prcEmployUpdate(4,'Mohammad','Angular','Expert',99522);
+
+________________________________________________________________________________________________
+
+Write A store procedure to delete a record
+
+Create or Replace procedure prcEmployDelete(eno employ.empno%type)
+AS
+BEGIN
+    Delete From Employ where empno=eno;
+END;
+
+exec prcEmployDelete(6);
+______________________________________________________________________________________________
+
+
+Create Table Agent
+(
+   agentId int primary key,
+   AgentName varchar2(30),
+   Gender varchar2(10),
+   PayMode number,
+   Premium number(9,2)
+);
+
+
+Write a Stored Procedure to Insert Record into Agent Table, but AgentId to be generated Automatically 
+
+
+Create or replace procedure prcAgentInsert(agName Agent.AgentName%type,
+					   gen Agent.Gender%type,
+					   pm Agent.PayMode%type,
+					   prem Agent.Premium%type)
+AS
+BEGIN
+    declare
+       agId number;
+    begin
+        select case when max(agentId) is NULL THEN 1 else Max(AgentID)+1 end INTO AgID from Agent;
+        Insert into Agent(AgentID,AgentName,Gender,PayMode,Premium) values(AgID,AgName,Gen,Pm,Prem);
+    end;   
+END;
+
+exec prcAgentInsert('Naman','MALE',1,85844);
+
+
+create table Policy
+(
+   policyId number primary key,
+   policyName varchar(30),
+   policyHolderName varchar(30),
+   installment number(9,2),
+   comments varchar(30)
+);
+
+
+
+
+
+
+
+
+

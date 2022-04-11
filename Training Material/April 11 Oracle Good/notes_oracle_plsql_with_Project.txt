@@ -1,0 +1,495 @@
+There are 3 types of parameters known as 
+
+	(i) IN : Can be used for input purpose. 
+
+	(ii) OUT : Used for output purpose, 
+if you want to return more than one value to the 
+corresponding procedure, then we need the help of out parameter.
+
+	(iii) IN OUT 
+
+
+
+create or replace procedure prcEmployOutEx1
+	(eno employ.empno%type,
+         nam OUT employ.name%type,
+         gen OUT employ.gender%type,
+         dpt out employ.dept%type,
+         dsg out employ.desig%type,
+         bas out employ.basic%type)
+AS
+BEGIN
+     select Name,Gender,Dept,Desig,BASIC INTO
+	   nam,gen,dpt,dsg,bas
+	from Employ where empno=eno;
+     exception
+	WHEN NO_DATA_FOUND THEN
+	   nam:='Not Found';
+	   dpt:='Not Found';
+	   dsg:='Not Found';
+	   gen:='Not Found';
+	   bas:=0;
+END;
+
+create or replace procedure prcEmployOutEx2
+		(eno employ.empno%type)
+AS
+BEGIN
+     declare
+	nam employ.name%type;
+        gen employ.gender%type;
+	dpt employ.dept%type;
+        dsg employ.desig%type;
+        bas employ.basic%type;
+     begin
+	prcEmployOutEx1(eno,nam,gen,dpt,dsg,bas);
+	dbms_output.put_line('Name is ' ||nam);
+        dbms_output.put_line('Gender is ' ||gen);
+	dbms_output.put_line('Department is ' || dpt);
+	dbms_output.put_line('Designation is ' || dsg);
+	dbms_output.put_line('Salary is  ' || bas);
+     end;
+END;
+
+________________________________________________________________________________
+
+
+Create Table Agent
+(
+   agentId int primary key,
+   AgentName varchar2(30),
+   Gender varchar2(10),
+   PayMode number,
+   Premium number(9,2)
+);
+
+
+create or replace procedure prcAgentInsert
+		(agName Agent.AgentName%type,
+		 gen Agent.Gender%type,
+	         pm Agent.PayMode%type,
+                 prem Agent.Premium%type)
+AS
+BEGIN
+	declare
+	   agId number;
+	begin
+	select case when max(agentId) IS NULL THEN 1
+	  else Max(AgentID)+1 END INTO agId from Agent;
+	Insert into Agent(AgentId,AgentName,Gender,
+		PayMode,Premium) 
+	values(agId,agName,gen,pm,prem);
+	end;
+END;
+
+
+create table Policy
+(
+   policyId number primary key,
+   policyName varchar(30),
+   policyHolderName varchar(30),
+   installment number(9,2),
+   comments varchar(30)
+);
+
+
+create or replace procedure prcAgentIdAutoIncrement(agId OUT NUMBER)
+AS
+BEGIN
+select case when max(agentId) IS NULL THEN 1
+	  else Max(AgentID)+1 END INTO agId from Agent;
+END;
+
+
+create or replace procedure prcAgentInsert
+		(agName Agent.AgentName%type,
+		 gen Agent.Gender%type,
+	         pm Agent.PayMode%type,
+                 prem Agent.Premium%type)
+AS
+BEGIN
+	declare
+	   agId number;
+	begin
+	prcAgentIdAutoIncrement(agId);
+	Insert into Agent(AgentId,AgentName,Gender,
+		PayMode,Premium) 
+	values(agId,agName,gen,pm,prem);
+	end;
+END;
+
+_______________________________________________________________________________________________________
+
+A function is a subprogram, that which returns the value based on some calculation. 
+
+A procedure may or may not returns the value, but function returns the value mandetory.
+
+A procedure may return more than one value, but function returns only one value over the time. 
+
+syntax : 
+
+create or replace function function_name(pars) return data_type
+begin
+....
+....
+end;
+
+create or replace function evens(n number) return varchar2 as
+res varchar2(15);
+begin
+    if n mod 2 = 0 then
+      res:='even';
+    else
+      res:='odd';
+    end if;
+    return res;
+end;
+
+create or replace function agentIdAutoGen return number as
+res number;
+begin
+   select case when max(agentId) is null then 1 else
+	max(agentID)+1 end into res from agent;
+   return res;
+end;
+
+
+to execute the function
+
+select evens(11) from dual;
+
+select agentIdAutoGen from dual;
+
+create or replace procedure prcAgentInsertNew
+		(agName Agent.AgentName%type,
+		 gen Agent.Gender%type,
+	         pm Agent.PayMode%type,
+                 prem Agent.Premium%type)
+AS
+BEGIN
+	declare
+	   agId number;
+	begin
+         select agentIdAutoGen into agId from dual;
+	Insert into Agent(AgentId,AgentName,Gender,
+		PayMode,Premium) 
+	values(agId,agName,gen,pm,prem);
+	end;
+END;
+
+create or replace function GstTax(sal number) return number as
+result number;
+begin
+	result:=sal*0.075;
+        return result;
+end;
+
+
+create or replace function deptSum(dpt varchar2) return number as
+result number;
+begin
+   select sum(sal) into result from emp where job=dpt group by job;
+   return result;
+end;
+
+
+create or replace function maxsal return number as
+result number;
+begin
+   select max(sal) from emp into result;
+   return result;
+end;
+
+ declare
+     name varchar2(30);
+   begin
+   name:=q'!Father's Day!';
+   dbms_output.put_line(name);
+ end;
+
+_____________________________________________________________________________________
+
+Working with cursors 
+
+declare
+   cursor cursorEmp is
+	select empno, ename, job, sal from Emp;
+   cnt number;
+   eno emp.empno%type;
+   nam emp.ename%type;
+   dpt emp.job%type;
+   bas emp.sal%type;
+begin
+   select count(*) into cnt from emp;
+   open cursorEmp;
+    loop
+      fetch cursorEmp into eno, nam, dpt, bas;
+	dbms_output.put_line('Employ No ' ||eno);
+	dbms_output.put_line('Employ Name ' || nam);
+	dbms_output.put_line('Department ' || dpt);
+	dbms_output.put_line('Basic ' || bas);
+      exit when cursorEmp%rowcount=cnt;
+    end loop;
+end;
+
+________________________________________________________________________________________
+
+declare
+   cursor cursorEmp is
+	select empno, ename, job, sal from Emp;
+   cnt number;
+   empRecord cursorEmp%rowType;
+begin
+   select count(*) into cnt from emp;
+   open cursorEmp;
+    loop
+      fetch cursorEmp into empRecord;
+	dbms_output.put_line('Employ No ' ||empRecord.empno);
+	dbms_output.put_line('Employ Name ' || empRecord.Ename);
+	dbms_output.put_line('Department ' || empRecord.job);
+	dbms_output.put_line('Basic ' || empRecord.sal);
+      exit when cursorEmp%rowcount=cnt;
+    end loop;
+end;
+_________________________________________________________________________________________
+
+
+declare
+   cursor cursorEmp is
+	select empno, ename, job, sal from Emp;
+   cnt number;
+   empRecord cursorEmp%rowType;
+begin
+   select count(*) into cnt from emp;
+    if not cursorEmp%isOpen then
+         open cursorEmp;
+    end if;
+    loop
+      fetch cursorEmp into empRecord;
+	dbms_output.put_line('Employ No ' ||empRecord.empno);
+	dbms_output.put_line('Employ Name ' || empRecord.Ename);
+	dbms_output.put_line('Department ' || empRecord.job);
+	dbms_output.put_line('Basic ' || empRecord.sal);
+      exit when cursorEmp%rowcount=cnt;
+    end loop;
+end;
+
+__________________________________________________________________________
+
+Account(AccountNo,FirstName,LastName,City,State,Amount,CheqFacil,accountType,status) 
+
+Transaction(TransID+,AccountNo-,TranAmount,TranType,TranDate) 
+TransId -> Primary key auto increment
+AccountNo -> Foreign Key
+TranType -> C or D 
+TranDate -> DOn't enter default display today's date
+
+AccountNo -> Primary Key
+FirstName,LastName -> NOT NULL
+City -> varchar2(30)
+State -> varchar2(30)
+Amount -> number(9,2)
+CheqFacil -> Yes or No
+AccountType -> Savings/Current/Recurring/Salary
+status -> Give Default value as 'Active'
+
+
+CreateAccount
+SearchAccount
+UpdateAccount
+CloseAccount
+
+DepositAccount
+WithdrawAccount
+
+Create Table Account
+(
+   accountNo number primary key,
+   FirstName varchar2(30) not null,
+   lastName varchar2(30) not null,
+   city varchar2(30) not null,
+   state varchar2(30) not null,
+   amount number(9,2) constraint
+	chk_account_amount check(amount between 1000 and 99999),
+   cheqFacil varchar2(10)
+	constraint chk_account_cheqFacil check(cheqFacil in('Yes','No')),
+   accountType varchar2(20)
+     constraint chk_account_accountType check(accountType in('Savings','Current','Recurring','Salary')),
+   status varchar2(10) default 'Active'
+);
+
+Create or replace procedure prcAccountCreate
+	(fname account.firstName%type,
+         lname account.lastName%type,
+         cit account.city%type,
+         st account.state%type,
+         amt account.amount%type,
+         cf account.cheqFacil%type,
+         accType account.AccounTtype%type)
+AS
+BEGIN
+     declare 
+	accno number;
+     begin
+       select case when max(accountNo) is NULL THEN 1 else 
+	max(accountNo)+1 end into accno from account;
+       insert into Account(AccountNo,FirstName,LastName,City,State,amount,
+		cheqFacil,AccountType) values(accno,fname,lname,cit,st,amt,cf,accType);
+     end;
+END;
+
+
+
+
+create or replace procedure prcAccountNoGenerate(accno OUT number)
+as
+BEGIN
+    select case when max(accountNo) is NULL THEN 1 else 
+	max(accountNo)+1 end into accno from Account;
+END;
+
+
+
+Create or replace procedure prcAccountCreateNew
+	(fname account.firstName%type,
+         lname account.lastName%type,
+         cit account.city%type,
+         st account.state%type,
+         amt account.amount%type,
+         cf account.cheqFacil%type,
+         accType account.AccounTtype%type)
+AS
+BEGIN
+     declare 
+	accno number;
+     begin
+	prcAccountNoGenerate(accno);       
+       insert into Account(AccountNo,FirstName,LastName,City,State,amount,
+		cheqFacil,AccountType) values(accno,fname,lname,cit,st,amt,cf,accType);
+     end;
+END;
+
+exec prcAccountCreate('Nidhi','B','Lucknow','UP',58634,'Yes','Salary');
+
+
+
+
+
+
+
+create or replace procedure printSal(salary in out number)
+AS
+BEGIN
+     select sal into salary from Emp where empno=7900; 
+     dbms_output.put_line('Salary is  ' || salary);
+     salary:=salary+100;
+END;
+
+create or replace procedure incrsal(inc number)
+AS
+BEGIN
+    declare
+       sal number;
+    begin
+     printSal(sal);
+     sal:=sal+inc;
+     dbms_output.put_line('Incremented Salary is ' || sal);
+    end;
+END;
+
+
+create or replace procedure printSal(salary out number)
+AS
+BEGIN
+     select sal into salary from Emp where empno=7900; 
+     dbms_output.put_line('Salary is  ' || salary);
+     salary:=salary+100;
+END;
+
+create or replace procedure incrsal(inc number)
+AS
+BEGIN
+    declare
+       sal number;
+    begin
+     printSal(sal);
+     sal:=sal+inc;
+     dbms_output.put_line('Incremented Salary is ' || sal);
+    end;
+END;
+
+create or replace procedure showVal(x in out number)
+AS
+BEGIN
+    dbms_output.put_line('x is ' ||x);
+    x:=30;
+END;
+
+create or replace procedure showNew
+AS
+BEGIN
+    declare
+	x number:=10;
+    begin
+       showVal(x);
+       dbms_output.put_line('x is ' ||x);
+    end;
+END;
+
+
+_______________________________________________________________________
+
+
+create or replace procedure showVal(x out number)
+AS
+BEGIN
+    dbms_output.put_line('x is ' ||x);
+    x:=30;
+END;
+
+create or replace procedure showNew
+AS
+BEGIN
+    declare
+	x number:=10;
+    begin
+       showVal(x);
+       dbms_output.put_line('X is ' ||x);
+    end;
+END;
+
+
+
+
+_____________________________________________________________________________________________
+
+create or replace function fnAccountNoautoGen return number AS
+accno number;
+begin
+  select case when max(accountNo) is null then 1 else 
+	max(accountNo)+1 end into accno from account; 
+   return accno;
+end;
+
+
+Create or replace procedure prcAccountCreateFunction
+	(fname account.firstName%type,
+         lname account.lastName%type,
+         cit account.city%type,
+         st account.state%type,
+         amt account.amount%type,
+         cf account.cheqFacil%type,
+         accType account.AccounTtype%type)
+AS
+BEGIN
+     declare 
+	accno number;
+     begin
+	select fnAccountNoautoGen into accno from dual;       
+       insert into Account(AccountNo,FirstName,LastName,City,State,amount,
+		cheqFacil,AccountType) values(accno,fname,lname,cit,st,amt,cf,accType);
+     end;
+END;
+
+
+ exec prcAccountCreateFunction('Haritha','A','Vijayawada','AP',58634,'Yes','Salary');

@@ -1,0 +1,216 @@
+Create Table Accounts
+(
+   AccountNo number primary key,
+   FirstName varchar2(30),
+   LastName varchar2(30),
+   City varchar2(30),
+   State varchar2(30),
+   Amount Number(9,2),
+   CheqFacil varchar2(10),
+   AccountType varchar2(20),
+   Status varchar2(10) default 'active',
+   DateOfOpen Date Default sysdate
+);
+
+Create Table Trans
+(
+   AccountNo number references Accounts(AccountNo),
+   TranAmount Number(9,2),
+   TranType varchar(3),
+   TranDate Date default Sysdate
+);
+
+
+Create or replace procedure prcAccountCreate(fname Accounts.FirstName%type,
+					     lname Accounts.LastName%type,
+					     cit Accounts.City%type,
+					     st Accounts.State%type,
+					     amt Accounts.Amount%type,
+					     Cf Accounts.CheqFacil%type,
+					     atype Accounts.AccountType%type)
+As
+BEGIN
+    Declare
+	accno Number;
+    begin
+       select case when max(accountNo) IS NULL THEN 1 Else Max(AccountNo)+1 end into accno from Accounts;
+       Insert into Accounts(AccountNo,FirstName,LastName,City,State,Amount,CheqFacil,AccountType)
+		values(accno,fname,lname,cit,st,amt,cf,atype);
+       dbms_output.put_line('Account Created Successfully...Your AccountNo is ' ||accno);
+    end;
+END;
+
+exec prcAccountCreate('Anushka','Tiwari','Pune','MH',88334,'Yes','Savings');
+
+_______________________________________________________________________________________________________
+
+Create or replace procedure prcAccountSearch(accno Accounts.AccountNo%type)
+AS
+BEGIN
+    Declare
+        fname Accounts.FirstName%type;
+        lname Accounts.LastName%type;
+        cit Accounts.City%type;
+        st Accounts.State%type;
+        amt Accounts.Amount%type;
+        cf Accounts.CheqFacil%type;
+        atype Accounts.AccountType%type;
+    Begin
+      select FirstName,LastName,City,State,Amount,CheqFacil,AccountType into 
+	     fname,lname,cit,st,amt,cf,atype from Accounts where AccountNo=accno;
+      dbms_output.put_line('First Name  ' ||fname);
+      dbms_output.put_line('Last Name  ' ||lname);
+      dbms_output.put_line('City  ' ||cit);
+      dbms_output.put_line('State  ' ||st);
+      dbms_output.put_line('Amount ' ||amt);
+      dbms_output.put_line('CheqFacil ' ||cf);
+      dbms_output.put_line('Account Type ' ||atype);
+    END;
+END;
+
+________________________________________________________________________________________
+
+Create or replace procedure prcAccountClose(accno Accounts.AccountNo%type)
+AS
+BEGIN
+   Update Accounts Set status='inactive' where AccountNo=accno;
+   dbms_output.put_line('Account Closed...');
+END;
+
+
+_______________________________________________________________________________________________
+
+Create or replace procedure prcAccountDeposit(accno Accounts.AccountNo%type,
+					      depAmount number)
+As
+BEGIN
+     Update Accounts Set Amount=Amount+depAmount where AccountNo=Accno;
+     Insert into Trans(AccountNo,TranAmount,TranType) values(accno,DepAmount,'C');
+     dbms_output.put_line('Amount Credited to Your Account...');
+END;
+
+exec prcAccountDeposit(1,10000);
+
+____________________________________________________________________________________________
+
+Create or replace procedure prcAccountWithdraw(accno Accounts.AccountNo%type,
+					      withdrawAmount number)
+As
+BEGIN
+     declare
+	 amt Accounts.Amount%type;
+     begin
+        select Amount into Amt from Accounts where AccountNo=Accno;
+        if (amt-withdrawAmount >= 1000) then
+   	  Update Accounts Set Amount=Amount-withdrawAmount where AccountNo=Accno;
+     Insert into Trans(AccountNo,TranAmount,TranType) values(accno,WithdrawAmount,'D');
+     dbms_output.put_line('Amount Debited from Your Account...');
+            else
+	dbms_output.put_line('Insufficient funds...');
+        end if;
+     end;
+END;
+
+
+
+
+
+
+
+___________________________________________________________
+
+nvl2(expr,notnullresult,nullresult)
+
+nvl2(comm,sal+comm,sal)
+
+
+___________________________________________________________________________
+
+create or replace procedure prcAccountUpdate
+(
+Accno Accounts.AccountNo%type,
+Fname Accounts.FirstName%type,
+Lname Accounts.LastName%type,
+Cit Accounts.City%type,
+Stat Accounts.State%type,
+Amt Accounts.Amount%type,
+Cf Accounts.CheqFacil%type,
+Actype Accounts.AccountType%type
+)
+AS
+BEGIN
+  Update Accounts set FirstName=NVL2(Fname,Fname,FirstName),
+                      LastName=NVL2(Lname,Lname,LastName),
+                      City=NVL2(Cit,Cit,City),
+                      State=NVL2(Stat,Stat,State),
+                      Amount=NVL2(Amt,Amt,Amount),
+                      CheqFacil=NVL2(cf,cf,CheqFacil),
+                      AccountType=NVL2(Actype,Actype,AccountType)
+       WHERE AccountNo=Accno;
+                     
+END;
+
+exec prcAccountUpdate(1,NULL,NULL,'Chennai','TN',NULL,NULL,NULL);
+
+exec prcAccountUpdate(3,'Naman','Jain','Jalandhar','PB',88844,'Yes','Savings');
+
+_________________________________________________________________________________________________________
+
+Create or replace procedure prcDivsion(a number,b number)
+AS
+BEGIN
+    declare 
+	c number;
+    begin 
+       c:=a/b;
+       dbms_output.put_line('Division Value  ' ||c);
+    Exception 
+       WHEN ZERO_DIVIDE THEN
+         dbms_output.put_line('Division by zero impossible...');
+    end;
+END;
+
+__________________________________________________________________________________________________________
+
+Create or replace procedure prcEmployInsert(eno employ.empno%type,
+					    nam employ.Name%type,
+					    dpt employ.Dept%type,
+					    dsg employ.Desig%type,
+					    bas employ.Basic%type)
+AS
+BEGIN
+    INSERT INTO Employ(empno,name,dept,desig,basic) values(eno,nam,dpt,dsg,bas);
+    dbms_output.put_line('Record INserted...');
+    Exception
+      When DUP_VAL_ON_INDEX THEN
+         dbms_output.put_line('Employ Record Already Exists...');
+END;
+
+exec prcDivsion(12,3);
+
+__________________________________________________________________________________________________________
+
+Create or replace Procedure prcEmploySearch(eno employ.empno%type)
+AS
+BEGIN
+    Declare
+       nam employ.name%type;
+       dpt employ.dept%type;
+       dsg employ.desig%type;
+       sal employ.basic%type;
+    begin
+        select Name,Dept,Desig,Basic INTO nam,dpt,dsg,sal from Employ where empno=eno;
+        dbms_output.put_line('Employ Name ' || nam);
+        dbms_output.put_line('Department  ' || dpt);
+        dbms_output.put_line('Designation  ' || dsg);
+        dbms_output.put_line('Salary ' ||sal);
+    Exception
+      When NO_DATA_FOUND THEN
+         dbms_output.put_line('Employ No Does not Exists in table...');
+    end;
+END;
+
+To execute 
+
+exec prcEmploySearch(1);
+

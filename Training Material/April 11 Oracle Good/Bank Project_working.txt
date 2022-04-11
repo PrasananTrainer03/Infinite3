@@ -12,6 +12,15 @@ Create Table Accounts
    DateOfOpen Date Default sysdate
 );
 
+Create Table Trans
+(
+   AccountNo number references Accounts(AccountNo),
+   TranAmount Number(9,2),
+   TranType varchar(3),
+   TranDate Date default Sysdate
+);
+
+
 create or replace procedure prcAccountCreate
 (
 Fname Accounts.FirstName%type,

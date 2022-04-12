@@ -1,0 +1,15 @@
+declare 
+cursor c1 is 
+select empno,ename,sal from emp;
+rec c1%rowtype;
+begin
+   open c1;
+   loop
+     fetch c1 into rec; 
+	 dbms_output.put_line('Employ No  ' ||rec.empno);
+	 dbms_output.put_line('Name of Employ ' || rec.ename);
+	 dbms_output.put_line('Salary is  ' || rec.sal);
+	 dbms_output.put_line('---------------------------');
+	 exit when c1%notfound;
+   end loop;
+end;

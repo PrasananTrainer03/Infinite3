@@ -1,0 +1,22 @@
+declare 
+cursor cursor_emp(dsg varchar2) is 
+select Empno,Ename,Sal from Emp where job=dsg;
+rec cursor_emp%rowtype;
+begin
+	dbms_output.put_line('Clerk Records');
+      for rec in cursor_emp('CLERK')
+         loop
+	      dbms_output.put_line(rec.empno);
+		  dbms_output.put_line(rec.ename);
+		  dbms_output.put_line(rec.sal);
+         end loop;
+	dbms_output.put_line('---------------------------');
+	dbms_output.put_line('Manager Records ');
+	  for rec in cursor_emp('MANAGER')
+         loop
+	      dbms_output.put_line(rec.empno);
+		  dbms_output.put_line(rec.ename);
+		  dbms_output.put_line(rec.sal);
+         end loop;
+	dbms_output.put_line('-------------------------------------');
+end;

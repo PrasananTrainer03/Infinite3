@@ -1,0 +1,19 @@
+declare
+  cursor c1 is select empno,Ename,sal from emp;
+  eno emp.empno%type;
+  na emp.ename%type;
+  bas emp.sal%type;
+  c number;
+begin
+   select count(*) into c from emp;
+   open c1;
+    loop
+     fetch c1 into eno,na,bas;
+	 dbms_output.put_line('Employ No is ' || eno);
+     dbms_output.put_line('Name is  ' ||na);
+     dbms_output.put_line('Basic is ' ||bas);
+	 dbms_output.put_line('---------------------------------------------------');
+     exit when c1%rowcount=c;
+   end loop;
+   close c1;
+end;

@@ -1,0 +1,22 @@
+create or replace procedure prcAmountDeposit(AccNo Accounts.AccountNo%type,
+				DepAmt Accounts.Amount%type) 
+AS
+BEGIN 
+     declare 
+		custom_error Exception;
+	 begin 
+	Update Accounts set Amount=Amount+DepAmt WHERE AccountNo=Accno;
+	if sql%notfound then 
+	   raise custom_error;
+	 end if;
+	if sql%found then 
+	  dbms_output.put_line('Correct Account No...');
+	Insert into Trans(AccountNo,TranAmount,TranType)
+			values(AccNo,DepAmt,'C');
+	dbms_output.put_line('Account Deposit Successful...');
+	end if;
+	Exception 
+	    WHEN custom_error THEN 
+	     dbms_output.put_line('Account No Not Found...' ||Accno);
+    END;
+END;

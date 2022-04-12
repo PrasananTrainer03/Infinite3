@@ -1,0 +1,23 @@
+declare
+ cursor c1 is select empno,ename,sal from Emp;
+eno emp.empno%type;
+nam emp.ename%type;
+bas emp.sal%type;
+rno number:=1;
+begin 
+  open c1;
+  loop
+  fetch c1 into eno,nam,bas;
+  dbms_output.put_line('Record No  ' || rno);
+  rno:=rno+1;
+  dbms_output.put_line('Employ No ' || eno);
+  dbms_output.put_line('Name of Employ ' || nam);
+  dbms_output.put_line('Salary is  ' || bas);
+  dbms_output.put_line('----------------------------');
+  if nam='KING' then 
+    dbms_output.put_line('he is President...');
+  end if;
+  exit when nam='MARTIN';
+  end loop;
+  close c1;
+end;

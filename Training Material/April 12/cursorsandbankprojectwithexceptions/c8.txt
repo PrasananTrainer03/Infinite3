@@ -1,0 +1,31 @@
+declare
+    cursor  courses_cursor  is
+      select c.ccode, count(*) count
+      from courses c,  batches b, students s
+      where  c.ccode = b.ccode and b.bcode = s.bcode
+      group  by c.ccode;
+
+ v_per number(5,2);
+
+ begin
+         -- rec is automatically declared 
+         for rec in courses_cursor
+         loop
+	      
+            if  rec.count > 20 then
+                  v_per:= 1.15;
+            elsif  rec.count > 10 then
+                  v_per := 1.10;
+            else
+                  v_per := 0.90;
+            end if;
+
+            -- update row in the table
+
+	     dbms_output.put_line('Course Code ' || rec.ccode || ' Count ' || rec.count || ' Percentage ' || v_per);
+         
+            update courses set fee = fee * v_per
+            where  ccode = rec.ccode;
+         end loop;
+end;
+/

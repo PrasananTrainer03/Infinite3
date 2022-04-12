@@ -1,0 +1,13 @@
+declare
+  cursor c2 is select ename from emp;
+  na emp.ename%type;
+  c number;
+begin
+   select count(*) into c from emp;
+   if not c2%isopen then
+     dbms_output.put_line('Please open the cursor');
+   end if;
+   fetch c2 into na;
+   dbms_output.put_line('Name is ' ||na);
+   close c2;
+end;

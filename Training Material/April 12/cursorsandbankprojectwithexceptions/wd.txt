@@ -1,0 +1,29 @@
+Create Or replace Procedure PrcAmountWithdraw(AccNo Accounts.AccountNo%type,
+				WithAmt Accounts.Amount%type)
+AS
+BEGIN 
+    declare 
+      Amt Accounts.Amount%type;
+	  Accno_NotFound exception;
+	  Invalid_Balance exception;
+	begin 
+		select Amount into Amt from Accounts where accountNo=accno;
+		if sql%notfound then 
+			raise Accno_NotFound;
+		end if;
+		if(amt-withAmt >= 1000) then
+			Update Accounts set Amount=Amount-WithAmt WHERE AccountNo=Accno;
+	Insert into Trans(AccountNo,TranAmount,TranType)
+			values(AccNo,WithAmt,'D');
+		else 
+		     raise Invalid_Balance;
+		end if;
+	Exception
+	  WHEN NO_DATA_FOUND THEN 
+	    dbms_output.put_line('AccountNo Not Found...');
+	  WHEN Accno_NotFound THEN 
+	    dbms_output.put_line('AccountNo Not Found...');
+      WHEN Invalid_Balance THEN 
+	    dbms_output.put_line('Insufficient Balance');
+	end;
+END PrcAmountWithdraw;

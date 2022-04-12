@@ -1,0 +1,16 @@
+create or replace procedure prcAccountClose(Accno Accounts.AccountNo%type)
+AS
+BEGIN 
+    declare 
+		 custom_error Exception;
+	begin 
+		Update Accounts set Status='InActive' where AccountNo=Accno;
+      if sql%notfound then 
+	   raise custom_error;
+	 end if;
+	 dbms_output.put_line('Account Closed Successfully');
+	 Exception 
+	   WHEN custom_error THEN 
+	     dbms_output.put_line('Account No Not Found...' ||Accno);
+	end;
+END;

@@ -1,0 +1,24 @@
+create or replace procedure prcAccountCreate
+(
+Fname Accounts.FirstName%type,
+Lname Accounts.LastName%type,
+Cit Accounts.City%type,
+Stat Accounts.State%type,
+Amt Accounts.Amount%type,
+Cf Accounts.CheqFacil%type,
+Actype Accounts.AccountType%type	
+)
+AS
+BEGIN
+    declare 
+      accno number;
+    begin
+       select CASE WHEN MAX(AccountNo) IS NULL THEN 1 ELSE max(accountNo)+1 END into accno from accounts;
+       Insert into Accounts(AccountNo,FirstName,LastName,City,State,Amount,
+	   CheqFacil,AccountType) values(accno,Fname,Lname,Cit,Stat,Amt,Cf,Actype);
+       dbms_output.put_line('Account Created Successfully...');
+	EXCEPTION
+	   WHEN DUP_VAL_ON_INDEX THEN 
+	     dbms_output.put_line('Account No Already exists...Please change the Code...');
+    end;
+END;

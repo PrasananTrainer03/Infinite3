@@ -1,0 +1,33 @@
+create or replace procedure AccountUpdate
+(
+Accno Accounts.AccountNo%type,
+Fname Accounts.FirstName%type,
+Lname Accounts.LastName%type,
+Cit Accounts.City%type,
+Stat Accounts.State%type,
+Amt Accounts.Amount%type,
+Cf Accounts.CheqFacil%type,
+Actype Accounts.AccountType%type
+)
+AS
+BEGIN
+  Declare 
+    custom_error Exception;
+  begin
+  Update Accounts set FirstName=NVL2(Fname,Fname,FirstName),
+                      LastName=NVL2(Lname,Lname,LastName),
+                      City=NVL2(Cit,Cit,City),
+                      State=NVL2(Stat,Stat,State),
+                      Amount=NVL2(Amt,Amt,Amount),
+                      CheqFacil=NVL2(cf,cf,CheqFacil),
+                      AccountType=NVL2(Actype,Actype,AccountType)
+       WHERE AccountNo=Accno;
+	 if sql%notfound then 
+	   raise custom_error;
+	 end if;
+	 dbms_output.put_line('Record Updated...');
+	 Exception 
+	   WHEN custom_error THEN 
+	     dbms_output.put_line('Account No Not Found...' ||Accno);
+   end;
+END;

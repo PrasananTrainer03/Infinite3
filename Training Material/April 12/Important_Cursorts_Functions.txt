@@ -1,0 +1,286 @@
+How to Implement Custom Exceptions in PL/SQL,
+
+You can declare a variable of Exception type and raise the exception based on the condition. 
+
+Write a SP for sum of 2 numbers, if any number < 0 then throw NegativeException, if any number=0 then
+throw NumberZeroException else print the sum
+
+create or replace procedure prcSum(a number, b number) 
+As
+BEGIN
+   declare 
+     c number;
+     NumberZeroException Exception;
+     NegativeException Exception;
+   begin
+     if (a < 0 OR b < 0) then
+        raise NegativeException;
+     ELSIF (a = 0 OR b=0) then
+        raise NumberZeroException;
+     else
+     c:=a+b;
+     dbms_output.put_line('Sum is  ' ||c);
+     end if;
+     Exception 
+	WHEN NegativeException then 
+            dbms_output.put_line('Negative Numbers Not Allowed...');
+        WHEN NumberZeroException then
+	    dbms_output.put_line('Zero is Invalid Value...');
+     end;
+END prcSum;
+
+________________________________________________________________________________________
+
+Create or replace procedure voting(age number)
+AS
+BEGIN
+     declare
+        VotingException Exception;
+     begin
+        if (age < 18) then
+          raise VotingException;
+        else
+          dbms_output.put_line('You are Elligile for Voting...');
+        end if;
+     Exception
+        WHEN VotingException then
+	   dbms_output.put_line('You are not elligible for voting...');
+     end;
+END;
+
+___________________________________________________________________________________
+
+Create or replace procedure prcAccountWithdraw(accno Accounts.AccountNo%type,
+					      withdrawAmount number)
+As
+BEGIN
+     declare
+	 amt Accounts.Amount%type;
+           Accno_NotFound exception;
+	  Invalid_Balance exception;
+     begin
+        select Amount into Amt from Accounts where AccountNo=Accno;
+        if sql%notfound then
+           raise Accno_NotFound;
+        end if;
+        if (amt-withdrawAmount >= 1000) then
+   	  Update Accounts Set Amount=Amount-withdrawAmount where AccountNo=Accno;
+     Insert into Trans(AccountNo,TranAmount,TranType) values(accno,WithdrawAmount,'D');
+     dbms_output.put_line('Amount Debited from Your Account...');
+            else
+	    raise Invalid_Balance;
+        end if;
+      Exception
+        WHEN NO_DATA_FOUND THEN
+	   dbms_output.put_line('Invalid AccountNo...');
+        WHEN Accno_NotFound Then
+           dbms_output.put_line('Invalid AccountNo...');
+        WHEN Invalid_Balance Then 
+	   dbms_output.put_line('Insufficient Funds...');
+     end;
+END;
+
+_____________________________________________________________________________________________
+
+In Oracle PL/SQL we have various types of parameters known as 
+
+1) IN Parameter : Used only for INput Purpose, till time what we did are in parameters only. Used for input purpose. By default if you dont specify any type, its taken as IN by default.
+
+2) OUT Parameter : If you want to return more than one value to the corresponding stored procedure then we need the help of OUT parameter. You need to specify that explicity.
+
+Write a Sp, that which accepts the Empno as input and return Name,Dept,Desig and Basic
+
+For output parameters concept, we need 2 stored procedures. One for Writing code, that stored procedure can be called in another Stored Procedure for execution. 
+
+create or replace procedure prcEmploySearchOut1(eno employ.empno%type,
+					        nam OUT employ.name%type,
+					        dpt OUT employ.dept%type,
+                                                dsg OUT employ.desig%type,
+                                                bas OUT employ.basic%type)
+AS
+BEGIN
+    select Name,Dept,Desig,Basic into nam,dpt,dsg,bas from Employ where empno=eno;
+    Exception
+     WHEN NO_DATA_FOUND THEN
+           nam:='Not Found';
+           dpt:='Not Found';
+           dsg:='Not Found';
+           bas:=0;
+END;
+
+Create or replace procedure prcEmploySearchOut2(eno employ.empno%type)
+AS
+BEGIN
+    Declare
+       nam employ.name%type;
+       dpt employ.dept%type;
+       dsg employ.desig%type;
+       bas employ.basic%type;
+    begin
+        prcEmploySearchOut1(eno,nam,dpt,dsg,bas);
+        dbms_output.put_line('Employ Name ' ||nam);
+        dbms_output.put_line('Department ' || dpt);
+        dbms_output.put_line('Designation ' || dsg);
+        dbms_output.put_line('Basic  ' ||bas);
+    end;
+END;
+
+_____________________________________________________________________________________________
+
+
+create or replace procedure prcAgentIdAutoIncrement(agId OUT NUMBER)
+AS
+BEGIN
+select case when max(agentId) IS NULL THEN 1
+	  else Max(AgentID)+1 END INTO agId from Agent;
+END;
+
+
+create or replace procedure prcAgentInsert
+		(agName Agent.AgentName%type,
+		 gen Agent.Gender%type,
+	         pm Agent.PayMode%type,
+                 prem Agent.Premium%type)
+AS
+BEGIN
+	declare
+	   agId number;
+	begin
+	prcAgentIdAutoIncrement(agId);
+	Insert into Agent(AgentId,AgentName,Gender,
+		PayMode,Premium) 
+	values(agId,agName,gen,pm,prem);
+	end;
+END;
+
+3) IN OUT Parameter
+
+____________________________________________________________________________________________________
+
+
+Create or replace function fnTax(basic number) return number
+as
+begin
+    return basic*0.03;
+end;
+
+ select fntax(1000) from dual;
+ select empno,ename,job,sal,fntax(sal) from EMp;
+select empno,ename,job,sal,fntax(sal) Tax, sal-fntax(sal) TakeHome from EMp;
+
+
+_____________________________________________________________________________________________________
+
+
+Create or replace function even(n number) return varchar
+AS
+result varchar2(30);
+BEGIN
+   if n mod 2 = 0 then
+     result:='Even Number';
+   else 
+     result:='Odd Number';
+   end if;
+   return result;
+END;
+
+select even(10) from emp;
+
+___________________________________________________________________________________________________
+
+ create or replace function agentIdAutoGen return number as
+res number;
+begin
+   select case when max(agentId) is null then 1 else
+	max(agentID)+1 end into res from agent;
+   return res;
+end;
+
+____________________________________________________________________________________________________
+
+create or replace procedure prcAgentInsertNew
+		(agName Agent.AgentName%type,
+		 gen Agent.Gender%type,
+	         pm Agent.PayMode%type,
+                 prem Agent.Premium%type)
+AS
+BEGIN
+	declare
+	   agId number;
+	begin
+         select agentIdAutoGen into agId from dual;
+	Insert into Agent(AgentId,AgentName,Gender,
+		PayMode,Premium) 
+	values(agId,agName,gen,pm,prem);
+	end;
+END;
+
+______________________________________________________________________________________________________
+
+declare
+   cursor c1 is select empno,ename,sal from emp;
+   eno emp.empno%type;
+   nam emp.ename%type;
+   bas emp.sal%type;
+   begin
+     Open C1;
+     loop
+        fetch C1 into eno,nam,bas;
+        dbms_output.put_line('Employ No   ' ||eno);
+        dbms_output.put_line('Employ Name ' || nam);
+        dbms_output.put_line('Salary  ' ||bas);
+        dbms_output.put_line('----------------------------');
+        exit when c1%NOTFOUND;
+     end loop;
+   end;
+
+______________________________________________________________________________________________________
+
+
+Create or replace procedure prcEmpShowAll
+AS
+BEGIN
+    declare
+      Cursor C1 is Select Empno, Name,Dept,Desig,Basic from Employ;
+      eno employ.empno%type;
+      nam employ.name%type;
+      dpt employ.dept%type;
+      dsg employ.desig%type;
+      bas employ.basic%type;
+    begin
+      Open C1;
+      loop 
+        fetch c1 into eno, nam, dpt, dsg, bas;
+        dbms_output.put_line('Employ Number  ' ||eno);
+        dbms_output.put_line('Employ Name  ' ||nam);
+        dbms_output.put_line('Department  ' ||dpt);
+        dbms_output.put_line('Designation ' ||dsg);
+        dbms_output.put_line('Basic  ' ||bas);
+        dbms_output.put_line('----------------------------------------------');
+        exit when c1%notfound;
+      end loop;
+    end;
+END;
+
+___________________________________________________________________________________________
+
+Create or replace procedure prcEmpShowAll
+AS
+BEGIN
+    declare
+      Cursor C1 is Select Empno, Name,Dept,Desig,Basic from Employ;
+      employRecord c1%rowtype;
+    begin
+      Open C1;
+      loop 
+        fetch c1 into employRecord;
+        dbms_output.put_line('Employ Number  ' ||employRecord.empno);
+        dbms_output.put_line('Employ Name  ' ||employRecord.name);
+        dbms_output.put_line('Department  ' ||employRecord.dept);
+        dbms_output.put_line('Designation ' ||employRecord.desig);
+        dbms_output.put_line('Basic  ' ||employRecord.basic);
+        dbms_output.put_line('----------------------------------------------');
+        exit when c1%notfound;
+      end loop;
+    end;
+END;

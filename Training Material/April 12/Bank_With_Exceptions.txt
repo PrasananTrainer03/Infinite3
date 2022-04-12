@@ -1,0 +1,121 @@
+Create or replace procedure prcAccountCreate(fname Accounts.FirstName%type,
+					     lname Accounts.LastName%type,
+					     cit Accounts.City%type,
+					     st Accounts.State%type,
+					     amt Accounts.Amount%type,
+					     Cf Accounts.CheqFacil%type,
+					     atype Accounts.AccountType%type)
+As
+BEGIN
+    Declare
+	accno Number;
+    begin
+       select case when max(accountNo) IS NULL THEN 1 Else Max(AccountNo)+1 end into accno from Accounts;
+       Insert into Accounts(AccountNo,FirstName,LastName,City,State,Amount,CheqFacil,AccountType)
+		values(accno,fname,lname,cit,st,amt,cf,atype);
+       dbms_output.put_line('Account Created Successfully...Your AccountNo is ' ||accno);
+     EXCEPTION
+	   WHEN DUP_VAL_ON_INDEX THEN 
+	     dbms_output.put_line('Account No Already exists...Please change the Code...');
+    end;
+END;
+___________________________________________________________________________________________
+
+Create or replace procedure prcAccountSearch(accno Accounts.AccountNo%type)
+AS
+BEGIN
+    Declare
+        fname Accounts.FirstName%type;
+        lname Accounts.LastName%type;
+        cit Accounts.City%type;
+        st Accounts.State%type;
+        amt Accounts.Amount%type;
+        cf Accounts.CheqFacil%type;
+        atype Accounts.AccountType%type;
+    Begin
+      select FirstName,LastName,City,State,Amount,CheqFacil,AccountType into 
+	     fname,lname,cit,st,amt,cf,atype from Accounts where AccountNo=accno;
+      dbms_output.put_line('First Name  ' ||fname);
+      dbms_output.put_line('Last Name  ' ||lname);
+      dbms_output.put_line('City  ' ||cit);
+      dbms_output.put_line('State  ' ||st);
+      dbms_output.put_line('Amount ' ||amt);
+      dbms_output.put_line('CheqFacil ' ||cf);
+      dbms_output.put_line('Account Type ' ||atype);
+    Exception
+	WHEN NO_DATA_FOUND THEN
+	   dbms_output.put_line('Invalid AccountNo...');
+    END;
+END;
+
+_________________________________________________________________________________________
+
+create or replace procedure prcAccountUpdate
+(
+Accno Accounts.AccountNo%type,
+Fname Accounts.FirstName%type,
+Lname Accounts.LastName%type,
+Cit Accounts.City%type,
+Stat Accounts.State%type,
+Amt Accounts.Amount%type,
+Cf Accounts.CheqFacil%type,
+Actype Accounts.AccountType%type
+)
+AS
+BEGIN
+  Update Accounts set FirstName=NVL2(Fname,Fname,FirstName),
+                      LastName=NVL2(Lname,Lname,LastName),
+                      City=NVL2(Cit,Cit,City),
+                      State=NVL2(Stat,Stat,State),
+                      Amount=NVL2(Amt,Amt,Amount),
+                      CheqFacil=NVL2(cf,cf,CheqFacil),
+                      AccountType=NVL2(Actype,Actype,AccountType)
+       WHERE AccountNo=Accno;
+  if sql%notfound then 
+	   raise NO_DATA_FOUND;
+	 end if;
+  Exception
+      WHEN NO_DATA_FOUND THEN
+         dbms_output.put_line('Invalid Account Number...');                  
+END;
+
+
+exec prcAccountUpdate(100,NULL,NULL,'Chennai','TN',NULL,NULL,NULL);
+
+exec prcAccountUpdate(3,'Naman','Jain','Jalandhar','PB',88844,'Yes','Savings');
+
+___________________________________________________________________________________________
+
+Create or replace procedure prcAccountClose(accno Accounts.AccountNo%type)
+AS
+BEGIN
+   Update Accounts Set status='inactive' where AccountNo=accno;
+   if sql%notfound then
+       raise NO_DATA_FOUND;
+   end if;
+   dbms_output.put_line('Account Closed...');
+   Exception
+      WHEN NO_DATA_FOUND THEN
+          dbms_output.put_line('Invalid AccountNo...');
+END;
+_________________________________________________________________________________________
+
+Create or replace procedure prcAccountDeposit(accno Accounts.AccountNo%type,
+					      depAmount number)
+As
+BEGIN
+     Update Accounts Set Amount=Amount+depAmount where AccountNo=Accno;
+     if sql%notfound then 
+       raise NO_DATA_FOUND;
+     end if;
+     Insert into Trans(AccountNo,TranAmount,TranType) values(accno,DepAmount,'C');
+     dbms_output.put_line('Amount Credited to Your Account...');
+    Exception
+        WHEN NO_DATA_FOUND THEN
+          dbms_output.put_line('Invalid AccountNo...');
+END;
+
+exec prcAccountDeposit(100,10000);
+
+___________________________________________________________________________________________
+

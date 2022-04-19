@@ -1,0 +1,31 @@
+Write the code for below CMS project
+
+Restaurant 
+
+ShowRestaurant (select * from Restaurant) returns List<Restaurant>
+
+SearchRestaurant (select * from Restaurant where RestaurantID=?) Returns Restaurant
+
+Menu
+
+ShowMenuByRestaurantId (select * from Menu where RestaurantID=?) returns List<Menu>
+
+SearchByMenuId(select * from Menu where MenuID=?) Returns Menu 
+
+Customer : 
+
+ShowCustomer (select * from Customer) returns List<Customer>
+
+SeachCustomer (select * from Customer where CustomerID=?) returns Customer
+
+Vendor :
+
+ShowVendor (select * from Vendor) returns List<Vendor>
+
+SearchVendor (select * from Vendor where VendorID=?) return Vendor
+
+Wallet : 
+
+ShowCustomerWallet (select * from Wallet where CustomerID=?) returns List<Wallet>
+SearchWalletByID (select * from Wallet where WalletID=?) returns Wallet 
+

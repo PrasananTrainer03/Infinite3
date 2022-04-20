@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC 
+"-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="beanJegan" class="com.java.spr.CompanyImpl">
+		<property name="companyName" value="Hexaware"/>
+		<property name="branchName" value="Chennai"/>
+	</bean>
+	
+	<bean id="beanManasvi" class="com.java.spr.CompanyImpl">
+		<property name="companyName" value="Hexaware"/>
+		<property name="branchName" value="Mumbai"/>
+	</bean>
+	
+	<bean id="beanSurya" class="com.java.spr.CompanyImpl">
+		<property name="companyName" value="Hexaware"/>
+		<property name="branchName" value="Pune"/>
+	</bean>
+</beans>

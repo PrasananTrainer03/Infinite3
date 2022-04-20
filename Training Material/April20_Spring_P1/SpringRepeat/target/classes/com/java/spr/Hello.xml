@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC 
+"-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="beanMessages" class="com.java.spr.HelloImpl">
+		<property name="greetingMessage" value="Good Morning Mr/Ms "/>
+		<property name="closingMessage" value="Thanks for Contacting Us...Hope Your Issue Resolved Have Nice Day Mr/Ms " />
+	</bean>
+</beans> 

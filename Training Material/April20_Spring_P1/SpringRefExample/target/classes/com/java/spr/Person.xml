@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC 
+"-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="beanAtharva" class="com.java.spr.Person">
+		<property name="id" value="1"/>
+		<property name="name" value="Atharva Nimbalkar"/>
+		<property name="jobDetails" ref="companyChennai"/>
+		<property name="familyDetails">
+			<bean class="com.java.spr.Family">
+				<property name="city" value="Pune"/>
+				<property name="state" value="MH"/>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="beanPavan" class="com.java.spr.Person">
+		<property name="id" value="4"/>
+		<property name="name" value="Pavan Kalyan"/>
+		<property name="jobDetails" ref="companyChennai"/>
+		<property name="familyDetails">
+			<bean class="com.java.spr.Family">
+				<property name="city" value="Vijayawada"/>
+				<property name="state" value="AP"/>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="beanJegan" class="com.java.spr.Person">
+		<property name="id" value="5"/>
+		<property name="name" value="Jegan"/>
+		<property name="jobDetails" ref="companyChennai"/>
+		
+		<property name="familyDetails">
+			<bean class="com.java.spr.Family">
+				<property name="city" value="Kuduvasal"/>
+				<property name="state" value="TN"/>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="beanAnushka" class="com.java.spr.Person">
+		<property name="id" value="2"/>
+		<property name="name" value="Anushka Tiwari"/>
+		<property name="jobDetails">
+			<bean class="com.java.spr.JobDetails">
+				<property name="job" value="Software Engineer"/>
+				<property name="company" value="Hexaware"/>
+				<property name="location" value="Mumbai"/>
+			</bean>
+		</property>
+		<property name="familyDetails">
+			<bean class="com.java.spr.Family">
+				<property name="city" value="Chandighar"/>
+				<property name="state" value="PB"/>
+			</bean>
+		</property>
+	</bean>
+	<bean id="beanKamali" class="com.java.spr.Person">
+		<property name="id" value="2"/>
+		<property name="name" value="Kamali Surbani"/>
+		<property name="jobDetails">
+			<bean class="com.java.spr.JobDetails">
+				<property name="job" value="Software Engineer"/>
+				<property name="company" value="Hexaware"/>
+				<property name="location" value="Coimbatore"/>
+			</bean>
+		</property>
+		<property name="familyDetails">
+			<bean class="com.java.spr.Family">
+				<property name="city" value="Chennai"/>
+				<property name="state" value="TN"/>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="companyChennai" class="com.java.spr.JobDetails">
+			<property name="job" value="Software Engineer"/>
+				<property name="company" value="Hexaware"/>
+				<property name="location" value="Chennai"/>
+
+	</bean>
+</beans>

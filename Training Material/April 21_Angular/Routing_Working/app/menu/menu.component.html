@@ -1,0 +1,29 @@
+<p>menu works!</p>
+<!-- <a [routerLink]="['first']">First</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink]="['second']">Second</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink]="['third']">Third</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink]="['fourth']">Fourth</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink]="['TwoWay']">TwoWay</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink]="['calc']">Calculation</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink]="['employ']">Employ Table</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink]="['employdropdown']">Employ Dropdown</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ -->
+ <a [routerLink]="['/menu',{outlets: {'hexaware': ['first']}}]"> First</a> 
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <a [routerLink]="['/menu',{outlets: {'hexaware': ['second']}}]"> Second</a> 
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <a [routerLink]="['/menu',{outlets: {'hexaware': ['third']}}]"> Third</a> 
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <a [routerLink]="['/menu',{outlets: {'hexaware': ['fourth']}}]"> Fourth</a> 
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <a [routerLink]="['/menu',{outlets: {'hexaware': ['TwoWay']}}]"> TwoWay</a> 
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <a [routerLink]="['/menu',{outlets: {'hexaware': ['calc']}}]"> Calculation</a> 
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <a [routerLink]="['/menu',{outlets: {'hexaware': ['employ']}}]"> Employ</a> 
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <a [routerLink]="['/menu',{outlets: {'hexaware': ['employdropdown']}}]"> Employ DropDown</a> 
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ 
+<hr/>
+<router-outlet name="hexaware"></router-outlet>
